@@ -1,46 +1,76 @@
 # Reverse Engineer a Result — APL Project 2026
 
-## Assignment
-Recreate an existing application provided by Najmaddin using generative AI. Work backwards from its visible behavior to infer inputs, data structures and processing logic. The goal is an independent reconstruction, not recovery of original source code.
+## Goal
+Recreate an existing application using generative AI by working backwards from its visible results and understanding how it might work.
 
-## 1. Look at the application
-The supplied reconstruction notes describe a recording of Swedavia FlightInfo API v2, a Swedish Python terminal application with arrivals, departures, flight search, OData, heartbeat, automatic demonstration and pagination. The original recording was not independently reviewed during this documentation update.
+## Step 1 – Look at the application
 
-## 2. Ask questions
-The data consists of structured flight records, including flight identifiers, airlines, airports, timestamps, terminals, gates and baggage. A Python HTTP client could retrieve JSON and format it for terminal display. A database is not required for the reconstructed workflow; a local JSON file maps cities to countries. Generative AI assists with inferring logic, writing code and designing tests. Lovable and v0 are suggested in the assignment but not required for a Python CLI.
+**What does the application do?**
 
-## 3. Guess the inputs
-Menu selection, airport name or IATA code, date, flight direction, optional flight number, upcoming-only selection, OData filter, subscription key and optional city/country filter.
+The application displays flight information from different airports. It allows the user to search for flights and view arrivals and departures through a terminal interface.
 
-## 4. Guess the process
-Validate inputs, select a provider, retrieve JSON, discard empty records, filter results, convert timestamps to Swedish local time and display pages of 50 rows. Group destinations by city and look up countries. These are plausible steps rather than proof of the original internal implementation.
+## Step 2 – Ask questions
 
-## 5. Sketch the steps
+**What kind of data is this?**
+
+It is structured flight information, such as flight numbers, destinations, departure times and arrival times. The information can be represented in JSON format.
+
+**What could have created this?**
+
+A program written in Python could retrieve information from an API, process the data and display the results in a readable format.
+
+**How can generative AI help?**
+
+Generative AI can help explain the data, suggest how the application might work, generate example code and assist with troubleshooting.
+
+## Step 3 – Guess the inputs
+
+**What inputs would you need to get this result?**
+
+The application would need information such as an airport, a date and whether the user wants to see arrivals or departures. It may also need an API key to retrieve live information.
+
+## Step 4 – Guess the process
+
+**What functions or logic might build this?**
+
+1. The user enters or selects information.
+2. The application checks the input.
+3. Information is requested from an API.
+4. The returned data is processed and filtered.
+5. The results are displayed to the user.
+
+This is a possible explanation of how the original application works, rather than a confirmed description of its source code.
+
+## Step 5 – Sketch the steps
+
+**What might a function look like?**
+
 ```python
 def show_flights(airport, date, direction):
-    # Validate airport and date
-    # Retrieve records from the selected provider
-    # Filter and format records
-    # Display results in pages of 50
+    # Retrieve flight information
+    # Filter the results
+    # Display the information
     pass
 ```
-This is conceptual pseudocode, not the actual implementation.
 
-## 6. Try building it
-The reconstruction contains airport.py, flightinfo.py, aviationstack_client.py, destinationer.py, city_country.json and two test modules. It supports synthetic demo data and authenticated live providers.
+This is a simplified example of the logic behind the application.
 
-```bash
-python -m pip install -r requirements.txt
-python airport.py --demo
-python airport.py --demo --auto
-python -m unittest -v
-```
+## Step 6 – Try building it
 
-## Verification and limitations
-All 33 automated tests passed on 25 November 2026 in a clean extraction without the local .env file. Live access was not retested; existing project notes describe successful requests on 24 November. Exact parity with the original cannot be claimed. The student should add personal reflections and comparison results before submission.
+**Can you make an application that gives similar output?**
 
-## Conclusion
-The exercise demonstrates reasoning backwards from observable output, identifying inputs, proposing algorithms and validating an independent implementation. AI-assisted code must be reviewed and understood by the student.
+Yes. A similar application has been recreated in Python with the assistance of generative AI. It retrieves or uses demonstration flight data and presents the results in a terminal.
+
+The reconstructed application can be tested to check whether its functions behave as expected.
+
+## Results and conclusion
+
+The project demonstrates how an application can be reconstructed by observing its output, identifying possible inputs and understanding the logic behind the results.
+
+All 33 automated tests passed on 25 November 2026. Live API access was not retested during the documentation update, and exact equivalence to the original application has not been established.
+
+Generative AI is a useful tool for understanding and recreating software, but the generated code still needs to be reviewed and tested.
 
 ## Security
-Never publish .env, API keys, virtual environments or recordings containing credentials. Use your own subscription key for live requests.
+
+API keys and other private credentials should not be uploaded to GitHub.
